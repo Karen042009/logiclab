@@ -14,3 +14,33 @@ static/.DS_Store
 emails.py
 forms.py
 materials_format.json
+# 📁 Ֆայլեր ու պանակներ, որոնք ավտոմատ ստեղծվում են
+__pycache__/
+.DS_Store
+static/.DS_Store
+static/images/.DS_Store
+
+# 🧪 Թեստային ֆայլեր ու տվյալներ
+test.py
+test.json
+
+# 🧠 Մեքենայական ուսուցման և 3D կոնֆիգներ
+ml_config.json
+ml_course.json
+3d_config.json
+3d_course.json
+
+# 📨 Էլ․ փոստ և ձևեր
+emails.py
+forms.py
+
+# 📦 Թարմացման/օգնության ֆայլեր
+materials_format.json
+util/
+
+# 🧪 Վիրտուալ միջավայր
+vsoc_venv/
+venv/
+
+# 🔐 Գաղտնի կոնֆիգներ
+.env

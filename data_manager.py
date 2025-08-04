@@ -1,6 +1,7 @@
 import os
 import socket
 import hashlib
+import geoip2
 import requests
 from functools import wraps
 from user_agents import parse
