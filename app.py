@@ -54,11 +54,11 @@ app.config['MAIL_DEFAULT_SENDER'] = MAIL_DEFAULT_SENDER
 mail = Mail(app)
 
 # MongoDB configuration
-USER_NAME = os.getenv('MONGO_USERNAME')
-PASSWORD = os.getenv('MONGO_PASSWORD')
+USER_NAME = os.getenv('MONGO_USERNAME') or ""
+PASSWORD = os.getenv('MONGO_PASSWORD') or ""
 escaped_username = quote_plus(USER_NAME)
 escaped_password = quote_plus(PASSWORD)
-URI = f"mongodb+srv://{escaped_username}:{escaped_password}@cluster0.ckpsnux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+URI = f"mongodb://{escaped_username}:{escaped_password}@ac-75bzcpu-shard-00-00.ckpsnux.mongodb.net:27017,ac-75bzcpu-shard-00-01.ckpsnux.mongodb.net:27017,ac-75bzcpu-shard-00-02.ckpsnux.mongodb.net:27017/?ssl=true&replicaSet=atlas-mkl9qc-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0"
 app.config['MONGO_URI'] = URI
 
 DATA_MANAGER = DataManager(app, URI)
@@ -257,7 +257,7 @@ def contact():
             # Send email to admin
             msg = Message(
                 subject=f"New message from {name} - LogicLab Contact Form",
-                recipients=[os.getenv('ADMIN_EMAIL')],
+                recipients=[os.getenv('ADMIN_EMAIL') or ''],
                 body=f"""
                 Name: {name}
                 Email: {email}

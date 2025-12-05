@@ -13,7 +13,8 @@ import socket
 from user_agents import parse
 
 
-load_dotenv(dotenv_path=".env")
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 def load_env():
     MAIL_SERVER = os.getenv('MAIL_SERVER')
