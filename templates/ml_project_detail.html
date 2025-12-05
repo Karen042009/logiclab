@@ -53,10 +53,10 @@
                 {% if project.description %}
                 <div class="section-card" data-aos="fade-up">
                     <div class="section-header">
-                        <h2><i class="fas fa-info-circle"></i> Նախագծի մասին</h2>
+                        <h2><i class="fas fa-info-circle"></i> Նկարագրություն</h2>
                         <button class="toggle-btn" id="description-toggle"
                                 aria-controls="description-content"
-                                aria-label="Կարդալ ամբողջական նկարագրությունը">
+                                aria-label="Ցույց տալ կամ թաքցնել ամբողջ նկարագրությունը">
                             <i class="fas fa-chevron-down" aria-hidden="true"></i>
                             <span class="toggle-text">Ցույց տալ</span>
                         </button>
@@ -71,10 +71,10 @@
                 <!-- Interactive Model Testing -->
                 {% if project.colab_notebook_url %}
                 <div class="section-card interactive-section" data-aos="fade-up">
-                    <h2><i class="fas fa-flask"></i> Մոդելի Ինտերակտիվ Փորձարկում</h2>
-                    <p>Փորձարկեք մոդելն իրական տվյալներով՝ օգտագործելով Google Colab հարթակը:</p>
+                    <h2><i class="fas fa-flask"></i> Փորձարկեք Մոդելը</h2>
+                    <p>Սեղմեք ստորև՝ Google Colab-ում բացելու և փորձարկելու մոդելը իրական տվյալների վրա:</p>
                     <a href="{{ project.colab_notebook_url }}" target="_blank" class="btn btn-colab">
-                        <i class="fab fa-google"></i> Գործարկել Google Colab-ում
+                        <i class="fab fa-google"></i> Բացել Google Colab-ում
                     </a>
                 </div>
                 {% endif %}
@@ -82,7 +82,7 @@
                 <!-- Visualizations Gallery -->
                 {% if project.visualizations %}
                 <div class="section-card" data-aos="fade-up">
-                    <h2><i class="fas fa-chart-bar"></i> Տվյալների Վիզուալիզացիա</h2>
+                    <h2><i class="fas fa-chart-bar"></i> Վիզուալիզացիաներ և Գրաֆիկներ</h2>
                     <div class="visualizations-gallery">
                         {% for viz in project.visualizations %}
                         <div class="viz-item">
@@ -108,7 +108,7 @@
                 <!-- Performance Metrics -->
                 {% if project.metrics %}
                 <div class="section-card" data-aos="fade-up">
-                    <h2><i class="fas fa-chart-line"></i> Մոդելի Արդյունավետություն</h2>
+                    <h2><i class="fas fa-chart-line"></i> Արդյունավետության Ցուցանիշներ</h2>
                     <div class="metrics-grid">
                         {% if project.metrics.accuracy %}
                         <div class="metric-card">
@@ -174,7 +174,7 @@
                 <!-- Code Files with Syntax Highlighting -->
                 {% if code_files %}
                 <div class="section-card" data-aos="fade-up">
-                    <h2><i class="fas fa-code"></i> Ծրագրային Կոդ</h2>
+                    <h2><i class="fas fa-code"></i> Նախագծի Կոդ</h2>
                     <div class="code-tabs">
                         <div class="tab-buttons">
                             {% for filename in code_files.keys() %}
@@ -202,7 +202,7 @@
 
                 <!-- Project Structure & Downloads -->
                 <div class="section-card" data-aos="fade-up">
-                    <h2><i class="fas fa-folder-tree"></i> Ներբեռնել Նյութերը</h2>
+                    <h2><i class="fas fa-folder-tree"></i> Ներբեռնել Ֆայլեր</h2>
                     <div class="file-explorer">
                         {% if project.files.data %}
                         <div class="folder-item">
@@ -259,8 +259,8 @@
             <!-- Sidebar -->
             <aside class="sidebar-column">
                 <!-- Quick Actions -->
-                <div class="sidebar-card sticky-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-link"></i> Օգտակար Հղումներ</h3>
+                <div class="sidebar-card sticky-card" data-aos="fade-left">
+                    <h3><i class="fas fa-link"></i> Արագ Հղումներ</h3>
                     <div class="action-buttons">
                         {% if project.github_url %}
                         <a href="{{ project.github_url }}" target="_blank" class="sidebar-btn btn-github">
@@ -285,15 +285,15 @@
                         
                         <a href="{{ url_for('ml_projects') }}" class="sidebar-btn btn-back">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Վերադառնալ Ցանկ</span>
+                            <span>Վերադառնալ</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Student Contact -->
                 {% if project.student_email or project.student_phone %}
-                <div class="sidebar-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3><i class="fas fa-user"></i> Նախագծի Հեղինակ</h3>
+                <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
+                    <h3><i class="fas fa-user"></i> Հեղինակ</h3>
                     <div class="student-info">
                         <p class="student-name">{{ project.student_name }}</p>
                         {% if project.student_email %}

@@ -4,27 +4,10 @@
 .project-hero {
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
     color: var(--white);
-    padding: 8rem 0 8rem; /* Increased bottom padding for overlap */
+    padding: 8rem 0 4rem;
     margin-top: 70px;
     position: relative;
     overflow: hidden;
-    animation: gradient-shift 15s ease infinite;
-    background-size: 200% 200%;
-    width: 100%;
-    box-sizing: border-box;
-    clip-path: ellipse(150% 100% at 50% 0%); /* Subtle curve at the bottom */
-}
-
-/* Prevent horizontal scroll globally for this page */
-html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 .project-hero::before {
@@ -94,16 +77,15 @@ html, body {
 }
 
 .tech-pill {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
     font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .tech-pill:hover {
@@ -114,11 +96,8 @@ html, body {
 
 /* Content Grid */
 .project-content {
-    padding: 0 0 4rem; /* Removed top padding */
-    background: transparent; /* Changed from light-color to allow background through */
-    margin-top: -4rem; /* Overlap effect */
-    position: relative;
-    z-index: 20;
+    padding: 4rem 0;
+    background: var(--light-color);
 }
 
 .project-content .container {
@@ -146,13 +125,10 @@ html, body {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     width: 100%;
-    position: relative;
-    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .section-card:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* Collapsible Section Header */
@@ -176,22 +152,22 @@ html, body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 215, 0, 0.1); /* Softer yellow background */
+    background: var(--primary-color);
     color: var(--secondary-color);
-    border: 1px solid var(--primary-color);
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px; /* Fully rounded */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-btn:hover {
-    background: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .toggle-btn:active {
@@ -367,19 +343,7 @@ html, body {
 
 .interactive-section p {
     color: var(--secondary-color);
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-}
-
-.interactive-section::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
-    background-size: 20px 20px;
-    opacity: 0.1;
-    pointer-events: none;
+    margin-bottom: 1.5rem;
 }
 
 .btn-colab {
@@ -665,8 +629,7 @@ html, body {
 
 .sidebar-card.sticky-card {
     position: sticky;
-    top: 100px;
-    z-index: 10;
+    top: 90px;
 }
 
 .sidebar-card h3 {
@@ -862,16 +825,7 @@ html, body {
     border-radius: 0 0 8px 8px;
     background: #282c34 !important;
     padding: 1.5rem !important;
-    padding: 1.5rem !important;
     overflow-x: auto;
-    max-width: 100%;
-    white-space: pre; /* Force scrolling, don't wrap code */
-}
-
-/* Ensure container doesn't overflow */
-.code-content {
-    max-width: 100%;
-    overflow-x: hidden;
 }
 
 .code-content code {
@@ -940,200 +894,64 @@ html, body {
     .content-grid {
         grid-template-columns: 1fr;
         justify-content: stretch;
-        gap: 2.5rem;
     }
-
+    
     .sidebar-column {
         width: 100%;
     }
-
+    
     .sidebar-card.sticky-card {
-        position: relative !important;
-        top: auto !important;
-        z-index: 1;
-        margin-bottom: 2rem;
+        position: relative;
+        top: 0;
     }
-
+    
     .sidebar-column {
-        order: 2; /* Move sidebar to bottom on tablets/mobile */
-        margin-top: 2rem;
+        order: -1;
     }
-
+    
     .tab-buttons {
         flex-direction: column;
-        gap: 0.5rem;
     }
-
+    
     .tab-btn {
         width: 100%;
         justify-content: center;
-        font-size: 0.9rem;
-        padding: 0.75rem 1.25rem;
     }
 }
 
 @media (max-width: 768px) {
     .project-hero {
-        padding: 5rem 0 6rem; /* Extra bottom padding for mobile overlap */
-        clip-path: ellipse(150% 100% at 50% 0%);
+        padding: 6rem 0 3rem;
     }
-
-    .container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
+    
     .project-hero h1 {
-        font-size: 1.75rem; /* Smaller font for mobile to prevent overflow/excessive wrapping */
-        word-wrap: break-word;
+        font-size: 2rem;
     }
-
-    .project-hero .container {
-        padding-left: 1rem;
-    }
-
+    
     .project-meta {
         gap: 1rem;
         font-size: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
     }
-
-    .meta-item {
-        font-size: 0.95rem;
-    }
-
+    
     .section-card {
         padding: 1.5rem;
-        border-radius: 12px; /* Softer corners on mobile */
     }
-
+    
     .section-card h2 {
         font-size: 1.4rem;
     }
-
+    
     .visualizations-gallery {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
-
-    .viz-item img {
-        height: 200px;
-    }
-
+    
     .metrics-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-
-    .metric-card {
-        padding: 1.5rem 1rem;
-    }
-
-    .metric-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-
-    .metric-value {
-        font-size: 1.5rem;
-    }
-
+    
     .section-card {
         width: 100%;
-    }
-
-    /* Better mobile spacing */
-    .project-content {
-        padding: 0 0 3rem;
-        margin-top: -3rem;
-    }
-
-    .content-grid {
-        gap: 2rem;
-    }
-
-    .sidebar-card {
-        padding: 1.5rem;
-    }
-
-    .action-buttons {
-        gap: 0.75rem;
-    }
-
-    .sidebar-btn {
-        padding: 0.875rem 1.25rem;
-        font-size: 0.95rem;
-    }
-
-    /* Code viewer improvements for mobile */
-    .code-tabs {
-        margin-top: 1rem;
-    }
-
-    .tab-buttons {
-        gap: 0.25rem;
-        padding-bottom: 0.75rem;
-    }
-
-    .tab-btn {
-        padding: 0.625rem 1rem;
-        font-size: 0.85rem;
-        flex: 1;
-        justify-content: center;
-        min-width: 0;
-    }
-
-    .code-header {
-        padding: 0.75rem 1rem;
-    }
-
-    .code-filename {
-        font-size: 0.9rem;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .btn-copy {
-        padding: 0.4rem 0.75rem;
-        font-size: 0.8rem;
-        flex-shrink: 0;
-    }
-
-    .code-content pre {
-        padding: 1rem !important;
-        font-size: 0.8rem;
-        line-height: 1.4;
-    }
-
-    /* File explorer mobile improvements */
-    .file-explorer {
-        gap: 0.75rem;
-    }
-
-    .folder-header {
-        padding: 0.875rem 1.25rem;
-        font-size: 0.95rem;
-    }
-
-    .file-item {
-        padding: 0.875rem 1.25rem;
-        font-size: 0.9rem;
-    }
-
-    .file-item span {
-        font-size: 0.9rem;
-    }
-
-    /* Better touch targets */
-    .file-item,
-    .sidebar-btn,
-    .btn-copy,
-    .tab-btn {
-        min-height: 44px;
     }
 }
 
@@ -1148,13 +966,7 @@ html, body {
     }
 
     .metrics-grid {
-        grid-template-columns: repeat(2, 1fr); /* Keep 2 cols even on small phones if possible, else 1 */
-    } 
-    
-    @media (max-width: 400px) {
-        .metrics-grid {
-            grid-template-columns: 1fr;
-        }
+        grid-template-columns: 1fr;
     }
 
     .metric-value {
@@ -1177,9 +989,8 @@ html, body {
         align-self: stretch;
         justify-content: center;
         font-size: 0.9rem;
-        padding: 0.8rem 1rem; /* Larger touch target */
-        margin-top: 1rem;
-        width: 100%;
+        padding: 0.6rem 1rem;
+        margin-top: 0.5rem;
     }
 
     .description-content {
@@ -1202,4 +1013,568 @@ html, body {
         min-width: 44px;
     }
 }
+/* ML Project Portfolio Detail Page - Final Fixed Version (Desktop + Mobile) */
+/* ML Project Portfolio Detail Page - Final Version (2x4 Desktop Grid) */
 
+/* =========================================
+   1. HERO SECTION
+   ========================================= */
+.project-hero {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+    color: var(--white);
+    padding: 8rem 0 4rem;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+.project-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.featured-badge-large {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.meta-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tech-pill {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   2. MAIN LAYOUT & GRID
+   ========================================= */
+.project-content {
+    padding: 4rem 0;
+    background: var(--light-color);
+}
+
+.project-content .container {
+    max-width: 1400px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+/* =========================================
+   3. SECTION CARDS & HEADERS
+   ========================================= */
+.section-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    width: 100%;
+    overflow: hidden;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--light-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-header h2 i {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   4. DESCRIPTION TOGGLE
+   ========================================= */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: var(--primary-dark);
+}
+
+.toggle-btn i {
+    transition: transform 0.4s ease;
+}
+
+.toggle-btn.expanded i {
+    transform: rotate(180deg);
+}
+
+.description-content {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.4s ease, margin 0.4s ease, padding 0.4s ease;
+}
+
+.description-content.collapsed {
+    max-height: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+}
+
+.description-content.collapsed::after {
+    display: none;
+}
+
+.description-content.expanded {
+    max-height: 2000px;
+    margin-top: 1rem;
+    opacity: 1;
+}
+
+.description-text {
+    line-height: 1.8;
+    color: #555;
+    font-size: 1.05rem;
+    white-space: pre-line;
+}
+
+/* =========================================
+   5. METRICS GRID (2x4 LAYOUT FIXED)
+   ========================================= */
+.metrics-grid {
+    display: grid;
+    /* 
+       Desktop FIX: Force exactly 4 columns.
+       This will create a 2x4 grid if you have 8 items.
+    */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 1.5rem 1rem; /* Adjusted padding to fit content better */
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    min-width: 0; 
+    
+    /* Ensure long words break */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+    /* Flex alignment to keep height uniform */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.metric-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: var(--white);
+    flex-shrink: 0; /* Prevents icon from squishing */
+}
+
+.metric-icon.accuracy { background: linear-gradient(135deg, #667eea, #764ba2); }
+.metric-icon.precision { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.metric-icon.recall { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.metric-icon.f1 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.metric-icon.custom { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+.metric-value {
+    font-size: 1.8rem; /* Slightly smaller to fit 4 cols */
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: #666;
+    word-break: break-word; 
+    line-height: 1.4;
+    width: 100%;
+}
+
+/* =========================================
+   6. CODE VIEWER & FILES
+   ========================================= */
+.code-tabs {
+    margin-top: 1rem;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tab-btn {
+    background: #f1f1f1;
+    border: none;
+    padding: 0.75rem 1.2rem;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: #282c34;
+    color: var(--white);
+}
+
+.code-content {
+    display: none;
+}
+
+.code-content.active {
+    display: block;
+}
+
+.code-header {
+    background: #1c1e22;
+    color: #abb2bf;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 8px 0 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 1.5rem;
+    background: #282c34;
+    border-radius: 0 0 8px 8px;
+    overflow-x: auto;
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* File Explorer */
+.file-explorer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.folder-item, .file-item {
+    border: 1px solid #eee;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+    background: #fdfdfd;
+}
+
+.file-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+    transition: transform 0.2s;
+}
+
+/* =========================================
+   7. SIDEBAR & INTERACTIVE
+   ========================================= */
+.sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.sidebar-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    transition: transform 0.2s;
+    color: white;
+}
+.sidebar-btn:last-child { margin-bottom: 0; }
+.btn-github { background: #333; }
+.btn-demo { background: linear-gradient(135deg, #667eea, #764ba2); }
+.btn-colab-alt { background: #f9ab00; }
+.btn-back { background: #f1f1f1; color: #333; }
+
+/* Interactive Section */
+.interactive-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #e6ac00 100%);
+    color: var(--secondary-color);
+}
+.interactive-section h2 { color: var(--secondary-color); border-bottom-color: rgba(0,0,0,0.1); }
+.btn-colab {
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   8. MOBILE RESPONSIVE OPTIMIZATIONS
+   ========================================= */
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    .sidebar-column {
+        order: 1; 
+    }
+    .main-column {
+        order: 0;
+    }
+    .sticky-card {
+        position: static;
+    }
+    
+    /* On Tablets, maybe 3 columns or 2? 
+       Let's keep 4 if space allows, or drop to 2 */
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .project-hero {
+        padding: 5rem 0 3rem;
+    }
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr; /* Drop to 2 columns on tablets */
+    }
+}
+
+/* PHONE SPECIFIC FIXES */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .project-hero {
+        margin-top: 60px;
+        padding: 4rem 0 2rem;
+    }
+    .project-hero h1 {
+        font-size: 1.7rem;
+    }
+    .tech-pill {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .section-card {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem;
+        width: 100%;
+        line-height: 1.3;
+        margin-top: 2px;
+        word-break: break-word;
+    }
+
+    .toggle-btn {
+        width: 100%;
+        justify-content: center;
+        background: #f1f1f1;
+        color: var(--secondary-color);
+    }
+
+    /* Keep Mobile 2 Columns */
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr; 
+        gap: 0.75rem;
+        padding: 0 0.25rem;
+    }
+    
+    .metric-card {
+        padding: 1rem 0.5rem;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .metric-value {
+        font-size: 1.3rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .metric-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: normal;
+    }
+
+    .code-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .btn-copy {
+        width: 100%;
+        justify-content: center;
+    }
+    .code-content pre {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}
