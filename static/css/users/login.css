@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #FFD700;
-  --primary-dark: #FFC000;
+  --primary-color: #ffd700;
+  --primary-dark: #ffc000;
   --white: #ffffff;
   --secondary-color: #2c2c2c;
   --light-color: #f5f5f5;
@@ -17,7 +17,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -196,18 +197,17 @@ body {
 
 @media (max-width: 480px) {
   .login-box {
-      padding: 30px 20px;
+    padding: 30px 20px;
   }
-  
+
   .login-header h1 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
-  
+
   .btn-submit {
-      padding: 10px 15px;
+    padding: 10px 15px;
   }
 }
-
 
 /* API Help Message Styles */
 .api-help-message {
@@ -220,7 +220,7 @@ body {
   border-radius: 8px;
   margin: 10px 0;
   border: 1px solid #ffd54f;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: opacity 0.3s ease;
 }
 

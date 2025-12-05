@@ -1,6 +1,11 @@
 /* Courses Hero */
 .courses-hero {
-  background: linear-gradient(135deg, var(--dark-color), var(--secondary-color), var(--dark-color));
+  background: linear-gradient(
+    135deg,
+    var(--dark-color),
+    var(--secondary-color),
+    var(--dark-color)
+  );
   color: var(--white);
   padding: 8rem 0 4rem;
   text-align: center;
@@ -13,7 +18,7 @@
 
 .courses-hero p {
   font-size: 1.25rem;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   max-width: 800px;
   margin: 0 auto;
 }
@@ -52,7 +57,7 @@
 }
 
 .course-card:hover {
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .course-icon {
@@ -172,7 +177,7 @@
 
 .social-links a {
   color: var(--white);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -191,7 +196,7 @@
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.9rem;
   width: 100%;
 }
@@ -214,16 +219,16 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
   .courses-hero {
-      padding: 6rem 0 3rem;
+    padding: 6rem 0 3rem;
   }
-  
+
   .courses-hero h1 {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 576px) {
   .courses-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

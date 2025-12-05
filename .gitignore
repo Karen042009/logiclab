@@ -1,25 +1,52 @@
+# -----------------------------------------------------------------------------
+# Python & Virtual Environments
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+vsoc_venv/
+venv/
+env/
+util/
+
+# -----------------------------------------------------------------------------
+# Operating System Files
+# -----------------------------------------------------------------------------
+.DS_Store
+**/.DS_Store
+thumbs.db
+
+# -----------------------------------------------------------------------------
+# Environment Variables & Secrets
+# -----------------------------------------------------------------------------
 .env
-__pycache__
-vsoc_venv
-test.json
+
+# -----------------------------------------------------------------------------
+# Configuration & Data Files
+# -----------------------------------------------------------------------------
 ml_config.json
 3d_config.json
-.DS_Store
 3d_course.json
 ml_course.json
-static/images/.DS_Store
-util
+materials_format.json
+test.json
+
+# -----------------------------------------------------------------------------
+# Scripts & Source Files (Specific Ignores)
+# -----------------------------------------------------------------------------
 test.py
-static/.DS_Store
 emails.py
 forms.py
-materials_format.json
 
-# ML Projects - Local file storage
+# -----------------------------------------------------------------------------
+# ML Projects & Visualizations (Local Storage)
+# -----------------------------------------------------------------------------
 projects/
 sample_visualizations/
 
-# Sample generation scripts (optional - remove if you want to keep them)
+# -----------------------------------------------------------------------------
+# Optional/Commented Out scripts
+# -----------------------------------------------------------------------------
 # insert_sample_ml_project.py
 # generate_sample_visualizations.py
 # create_sample_project_local.py
