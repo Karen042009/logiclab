@@ -18,7 +18,7 @@ from flask import (
 from werkzeug.utils import secure_filename
 
 from utils import get_ids, find_by_id, load_env, is_valid_url, generate_download_url
-from data_manager import DataManager, admin_required, user_required
+from data_manager import DataManager, admin_required, user_required, set_global_data_manager
 
 # Allowed file extensions
 ALLOWED_IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp", "svg"}
@@ -84,6 +84,7 @@ URI = f"mongodb://{escaped_username}:{escaped_password}@ac-75bzcpu-shard-00-00.c
 app.config["MONGO_URI"] = URI
 
 DATA_MANAGER = DataManager(app, URI)
+set_global_data_manager(DATA_MANAGER)
 
 
 # Site Routes
@@ -639,7 +640,7 @@ def admin_add_instructor():
                 i += 1
             # Now construct the instructor object
             new_instructor = {
-                "_id": f"{request.form.get('specialization').lower().replace(' ', '_')}_instructor",
+                "_id": f"{(request.form.get('specialization') or '').lower().replace(' ', '_')}_instructor",
                 "photo": request.form.get("photo", "default_instructor.jpg"),
                 "firstName": request.form.get("firstName"),
                 "lastName": request.form.get("lastName"),
@@ -650,7 +651,7 @@ def admin_add_instructor():
                 },
                 "profession": request.form.get("profession"),
                 "specialization": request.form.get("specialization"),
-                "workExperience": int(request.form.get("workExperience")),
+                "workExperience": int(request.form.get("workExperience") or 0),
                 "companies": companies,
                 "contacts": {
                     "phone": request.form.get("contact_phone"),
@@ -1201,9 +1202,9 @@ def add_material():
             return redirect(url_for("admin_materials", course=course_id))
 
         material_data = {
-            "name": name.strip(),
-            "google_drive_url": google_drive_url.strip(),
-            "download_url": generate_download_url(google_drive_url),
+            "name": (name or "").strip(),
+            "google_drive_url": (google_drive_url or "").strip(),
+            "download_url": generate_download_url(google_drive_url or ""),
         }
 
         success, message = DATA_MANAGER.add_simple_material(course_id, material_data)
@@ -1672,8 +1673,11 @@ def api_register():
     courses_collection = DATA_MANAGER.get_courses()
     registrations = DATA_MANAGER.get_registrations()
     data = request.json
+    if not data:
+        return jsonify({"error": "Invalid data"}), 400
     course_id = data.get("course_id")
-    if not courses_collection.find_one({"_id": course_id, "is_active": True}):
+    course = courses_collection.find_one({"_id": course_id, "is_active": True})
+    if not course:
         return jsonify({"error": "Invalid course"}), 400
 
     if registrations.find_one({"email": data["email"], "course_id": course_id}):
@@ -1684,7 +1688,7 @@ def api_register():
         "email": data["email"],
         "phone": data["phone"],
         "course_id": course_id,
-        "course_title": courses_collection.find_one({"_id": course_id})["title"],
+        "course_title": course["title"],
         "registration_date": datetime.now(),
         "status": "pending",
     }

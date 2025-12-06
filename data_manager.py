@@ -11,8 +11,20 @@ from flask_mail import Mail, Message
 from flask import request, redirect, url_for, flash, session
 import uuid
 from datetime import datetime, timedelta
+import geoip2.database
 
 from models import TokenManager
+
+DATA_MANAGER_INSTANCE = None
+
+
+def set_global_data_manager(instance):
+    global DATA_MANAGER_INSTANCE
+    DATA_MANAGER_INSTANCE = instance
+
+
+def get_global_data_manager():
+    return DATA_MANAGER_INSTANCE
 
 
 class DataManager(TokenManager):
@@ -422,8 +434,11 @@ class DataManager(TokenManager):
         path = request.path
 
         try:
-            hostname = socket.gethostbyaddr(ip_address)[0]
-        except (socket.herror, socket.gaierror):
+            if ip_address:
+                hostname = socket.gethostbyaddr(ip_address)[0]
+            else:
+                hostname = None
+        except (socket.herror, socket.gaierror, TypeError):
             hostname = None
 
         visit_data = {
@@ -540,7 +555,12 @@ def admin_required(f):
             if not provided_key:
                 return redirect(url_for("admin_login"))
 
-            admins = DataManager.get_admins()
+            manager = get_global_data_manager()
+            if not manager:
+                flash("System error: Database connection not initialized", "error")
+                return redirect(url_for("home"))
+
+            admins = manager.get_admins()
             admin = admins.find_one({"api_key": provided_key})
             if not admin:
                 flash("Invalid API key", "error")
@@ -562,9 +582,12 @@ def user_required(f):
             if not provided_key:
                 return redirect(url_for("user_login"))
 
-            decoded_key = DataManager._decode_api_key(
-                provided_key, expiration_months=13
-            )
+            manager = get_global_data_manager()
+            if not manager:
+                flash("System error: Database connection not initialized", "error")
+                return redirect(url_for("home"))
+
+            decoded_key = manager._decode_api_key(provided_key, expiration_months=13)
             if not decoded_key["valid"]:
                 flash("Invalid API key", "error")
                 return redirect(url_for("login"))
@@ -577,13 +600,4 @@ def user_required(f):
     return wrapper
 
 
-DATA_MANAGER_INSTANCE = None
 
-
-def set_global_data_manager(instance):
-    global DATA_MANAGER_INSTANCE
-    DATA_MANAGER_INSTANCE = instance
-
-
-def get_global_data_manager():
-    return DATA_MANAGER_INSTANCE
