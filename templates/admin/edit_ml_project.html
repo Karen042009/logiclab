@@ -314,16 +314,57 @@
 
 <style>
 .form-help {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    font-style: italic;
 }
 
 .viz-group, .metric-group {
-    background: var(--light-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.viz-group::before, .metric-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.2);
+    animation: groupGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes groupGlow {
+    0%, 100% { 
+        left: -100%; 
+        opacity: 0;
+    }
+    50% { 
+        left: 0; 
+        opacity: 1;
+    }
+}
+
+.viz-group:hover, .metric-group:hover {
+    border-color: rgba(255, 215, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.viz-group .form-group:last-child,
+.metric-group .form-group:last-child {
+    margin-bottom: 0;
 }
 </style>
 
