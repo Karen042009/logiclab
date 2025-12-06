@@ -1,99 +1,179 @@
+/* visitors.css - Visitor Statistics */
+
 body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: var(--bg-muted);
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-dark);
   margin: 0;
   padding: 0;
+  color: var(--text-primary);
 }
 
 .admin-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .admin-header h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--text-dark);
+  gap: 16px;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stats-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  padding: 16px;
-  background: var(--bg-light);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease;
+  padding: 2rem;
+  background: var(--bg-card);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  border: var(--glass-border);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(12px);
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .stat-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-right: 16px;
+  font-size: 2rem;
+  margin-right: 1.5rem;
 }
 
 .total-visits .stat-icon {
-  background-color: rgba(75, 192, 192, 0.15);
-  color: var(--primary-color);
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
 }
 
 .unique-visitors .stat-icon {
-  background-color: rgba(54, 162, 235, 0.15);
-  color: var(--secondary-color);
+  background: rgba(255, 215, 0, 0.15);
+  color: #fbbf24;
 }
 
 .stat-content h3 {
   margin: 0;
-  font-size: 1rem;
-  color: var(--text-light);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 .stat-content p {
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin: 5px 0 0;
-  color: var(--text-dark);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0;
+  color: var(--text-primary);
 }
 
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .section {
-  background: var(--bg-light);
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  overflow: hidden; /* Ensure content hides properly */
 }
 
-.section h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+/* Header style for clickable/toggle */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 0; /* Adjust if needed */
+  transition: opacity 0.2s;
+}
+
+.section-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--text-dark);
+  gap: 12px;
+  color: var(--text-primary);
 }
 
+.section-header h2 i {
+  color: var(--accent-color);
+}
+
+.section-header:hover {
+  opacity: 0.8;
+}
+
+/* Collapsible Content */
+.collapsible-content {
+  max-height: 0; /* Default collapsed */
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+/* Expanded state */
+.section.expanded .collapsible-content {
+  max-height: 2000px; /* Large enough */
+  opacity: 1;
+  margin-top: 1.5rem; /* Space between header and content */
+}
+
+/* Toggle Button */
+.btn-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.section.expanded .btn-toggle {
+  transform: rotate(180deg);
+  background: rgba(255, 215, 0, 0.15);
+  color: #fbbf24;
+}
+
+.section.collapsed .btn-toggle {
+  transform: rotate(0deg);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+
+/* Tables */
 .table-responsive {
   overflow-x: auto;
   width: 100%;
@@ -101,45 +181,55 @@ body {
 
 .data-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 0.95rem;
 }
 
 .data-table th,
 .data-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
+  padding: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   text-align: left;
+  color: var(--text-primary);
 }
 
 .data-table th {
-  background: var(--bg-muted);
+  background: rgba(15, 23, 42, 0.5);
   font-weight: 600;
-  color: #444;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
 }
 
 .data-table tr:hover {
-  background-color: #f1f1f1;
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
+/* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .stat-chart {
-  background: var(--bg-muted);
-  padding: 16px;
-  border-radius: var(--radius);
+  background: rgba(15, 23, 42, 0.3);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-chart h3 {
   margin-top: 0;
-  font-size: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #ddd;
-  color: var(--text-dark);
+  font-size: 1.1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .stat-list {
@@ -151,38 +241,47 @@ body {
 .stat-list li {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #eaeaea;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-list li:last-child {
+  border-bottom: none;
 }
 
 .stat-label {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .stat-value {
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
 }
 
 .btn-sm {
-  background: var(--primary);
-  color: white;
-  padding: 6px 10px;
-  font-size: 0.8rem;
-  border: none;
-  border-radius: 4px;
+  background: rgba(255, 215, 0, 0.15);
+  color: #fbbf24;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 6px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  transition: background 0.2s;
+  gap: 6px;
+  transition: all 0.2s;
 }
 
 .btn-sm:hover {
-  background: #3baaaa;
+  background: var(--accent-color);
+  color: white;
 }
 
+/* Mobile */
 @media screen and (max-width: 768px) {
   .stat-card {
     flex-direction: column;
@@ -190,48 +289,15 @@ body {
   }
 
   .stat-icon {
-    margin: 0 0 10px 0;
+    margin: 0 0 1rem 0;
   }
 
   .admin-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .data-table th,
   .data-table td {
-    padding: 10px;
-    font-size: 0.9rem;
+    padding: 1rem;
   }
-
-  .section h2 {
-    font-size: 1.1rem;
-  }
-}
-
-/* ---------- collapsible sections ---------- */
-.collapsible-content {
-  max-height: 340px; /* visible “preview” height */
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
-.section.expanded .collapsible-content {
-  max-height: 9999px; /* practically “auto” once expanded */
-}
-
-.collapsible-toggle {
-  background: var(--primary, #2563eb);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  margin: 14px auto 0;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: block;
-  transition: background 0.25s;
-}
-
-.collapsible-toggle:hover {
-  background: #1e4fcc;
 }

@@ -22,13 +22,13 @@
             
             <div class="form-group">
                 <label for="title">Project Title *</label>
-                <input type="text" id="title" name="title" value="{{ project.title }}" required>
+                <input type="text" id="title" name="title" value="{{ project.title }}">
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="student_name">Student Name *</label>
-                    <input type="text" id="student_name" name="student_name" value="{{ project.student_name }}" required>
+                    <input type="text" id="student_name" name="student_name" value="{{ project.student_name }}">
                 </div>
                 <div class="form-group">
                     <label for="student_email">Student Email</label>
@@ -43,7 +43,7 @@
 
             <div class="form-group">
                 <label for="course_id">Course *</label>
-                <select id="course_id" name="course_id" required>
+                <select id="course_id" name="course_id">
                     <option value="">Select a course</option>
                     {% for course in courses %}
                     <option value="{{ course._id }}" {{ 'selected' if course._id == project.course_id }}>
@@ -149,30 +149,30 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="accuracy">Accuracy (0-1)</label>
-                    <input type="number" id="accuracy" name="accuracy" step="0.01" min="0" max="1" 
+                    <input type="number" id="accuracy" name="accuracy" step="0.001" min="0" max="1" 
                            value="{{ project.metrics.accuracy if project.metrics and project.metrics.accuracy else '' }}" 
-                           placeholder="0.95">
+                           placeholder="0.995">
                 </div>
                 <div class="form-group">
                     <label for="precision">Precision (0-1)</label>
-                    <input type="number" id="precision" name="precision" step="0.01" min="0" max="1" 
+                    <input type="number" id="precision" name="precision" step="0.001" min="0" max="1" 
                            value="{{ project.metrics.precision if project.metrics and project.metrics.precision else '' }}" 
-                           placeholder="0.93">
+                           placeholder="0.993">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="recall">Recall (0-1)</label>
-                    <input type="number" id="recall" name="recall" step="0.01" min="0" max="1" 
+                    <input type="number" id="recall" name="recall" step="0.001" min="0" max="1" 
                            value="{{ project.metrics.recall if project.metrics and project.metrics.recall else '' }}" 
-                           placeholder="0.92">
+                           placeholder="0.992">
                 </div>
                 <div class="form-group">
                     <label for="f1_score">F1 Score (0-1)</label>
-                    <input type="number" id="f1_score" name="f1_score" step="0.01" min="0" max="1" 
+                    <input type="number" id="f1_score" name="f1_score" step="0.001" min="0" max="1" 
                            value="{{ project.metrics.f1_score if project.metrics and project.metrics.f1_score else '' }}" 
-                           placeholder="0.92">
+                           placeholder="0.992">
                 </div>
             </div>
 
@@ -222,10 +222,10 @@
                 <div id="data-files">
                     {% if project.files and project.files.data %}
                         {% for url in project.files.data %}
-                        <input type="url" name="data_files[]" class="dynamic-input" value="{{ url }}">
+                        <input type="text" name="data_files[]" class="dynamic-input" value="{{ url }}">
                         {% endfor %}
                     {% else %}
-                        <input type="url" name="data_files[]" class="dynamic-input" placeholder="Google Drive URL for CSV file">
+                        <input type="text" name="data_files[]" class="dynamic-input" placeholder="Google Drive URL or file path">
                     {% endif %}
                 </div>
                 <button type="button" class="btn-add-field" onclick="addField('data-files', 'data_files[]')">
@@ -238,10 +238,10 @@
                 <div id="materials-files">
                     {% if project.files and project.files.materials %}
                         {% for url in project.files.materials %}
-                        <input type="url" name="materials_files[]" class="dynamic-input" value="{{ url }}">
+                        <input type="text" name="materials_files[]" class="dynamic-input" value="{{ url }}">
                         {% endfor %}
                     {% else %}
-                        <input type="url" name="materials_files[]" class="dynamic-input" placeholder="Google Drive URL">
+                        <input type="text" name="materials_files[]" class="dynamic-input" placeholder="Google Drive URL or file path">
                     {% endif %}
                 </div>
                 <button type="button" class="btn-add-field" onclick="addField('materials-files', 'materials_files[]')">
@@ -254,10 +254,10 @@
                 <div id="models-files">
                     {% if project.files and project.files.models %}
                         {% for url in project.files.models %}
-                        <input type="url" name="models_files[]" class="dynamic-input" value="{{ url }}">
+                        <input type="text" name="models_files[]" class="dynamic-input" value="{{ url }}">
                         {% endfor %}
                     {% else %}
-                        <input type="url" name="models_files[]" class="dynamic-input" placeholder="Google Drive URL for model.pkl">
+                        <input type="text" name="models_files[]" class="dynamic-input" placeholder="Google Drive URL or file path">
                     {% endif %}
                 </div>
                 <button type="button" class="btn-add-field" onclick="addField('models-files', 'models_files[]')">
@@ -267,37 +267,37 @@
 
             <div class="form-group">
                 <label for="main_py">main.py URL</label>
-                <input type="url" id="main_py" name="main_py" 
+                <input type="text" id="main_py" name="main_py" 
                        value="{{ project.files.main_py if project.files and project.files.main_py else '' }}" 
-                       placeholder="Google Drive URL for main.py">
+                       placeholder="Google Drive URL or file path">
             </div>
 
             <div class="form-group">
                 <label for="names_py">names.py URL</label>
-                <input type="url" id="names_py" name="names_py" 
+                <input type="text" id="names_py" name="names_py" 
                        value="{{ project.files.names_py if project.files and project.files.names_py else '' }}" 
-                       placeholder="Google Drive URL for names.py">
+                       placeholder="Google Drive URL or file path">
             </div>
 
             <div class="form-group">
                 <label for="processor_py">processor.py URL</label>
-                <input type="url" id="processor_py" name="processor_py" 
+                <input type="text" id="processor_py" name="processor_py" 
                        value="{{ project.files.processor_py if project.files and project.files.processor_py else '' }}" 
-                       placeholder="Google Drive URL for processor.py">
+                       placeholder="Google Drive URL or file path">
             </div>
 
             <div class="form-group">
                 <label for="utils_py">utils.py URL</label>
-                <input type="url" id="utils_py" name="utils_py" 
+                <input type="text" id="utils_py" name="utils_py" 
                        value="{{ project.files.utils_py if project.files and project.files.utils_py else '' }}" 
-                       placeholder="Google Drive URL for utils.py">
+                       placeholder="Google Drive URL or file path">
             </div>
 
             <div class="form-group">
                 <label for="requirements_txt">requirements.txt URL</label>
-                <input type="url" id="requirements_txt" name="requirements_txt" 
+                <input type="text" id="requirements_txt" name="requirements_txt" 
                        value="{{ project.files.requirements_txt if project.files and project.files.requirements_txt else '' }}" 
-                       placeholder="Google Drive URL for requirements.txt">
+                       placeholder="Google Drive URL or file path">
             </div>
         </div>
 

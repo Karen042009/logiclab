@@ -22,13 +22,13 @@
             
             <div class="form-group">
                 <label for="title">Project Title *</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title">
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="student_name">Student Name *</label>
-                    <input type="text" id="student_name" name="student_name" required>
+                    <input type="text" id="student_name" name="student_name">
                 </div>
                 <div class="form-group">
                     <label for="student_email">Student Email</label>
@@ -43,7 +43,7 @@
 
             <div class="form-group">
                 <label for="course_id">Course *</label>
-                <select id="course_id" name="course_id" required>
+                <select id="course_id" name="course_id">
                     <option value="">Select a course</option>
                     {% for course in courses %}
                     <option value="{{ course._id }}">{{ course.title }}</option>
@@ -121,22 +121,22 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="accuracy">Accuracy (0-1)</label>
-                    <input type="number" id="accuracy" name="accuracy" step="0.01" min="0" max="1" placeholder="0.95">
+                    <input type="number" id="accuracy" name="accuracy" step="0.001" min="0" max="1" placeholder="0.995">
                 </div>
                 <div class="form-group">
                     <label for="precision">Precision (0-1)</label>
-                    <input type="number" id="precision" name="precision" step="0.01" min="0" max="1" placeholder="0.93">
+                    <input type="number" id="precision" name="precision" step="0.001" min="0" max="1" placeholder="0.993">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="recall">Recall (0-1)</label>
-                    <input type="number" id="recall" name="recall" step="0.01" min="0" max="1" placeholder="0.92">
+                    <input type="number" id="recall" name="recall" step="0.001" min="0" max="1" placeholder="0.992">
                 </div>
                 <div class="form-group">
                     <label for="f1_score">F1 Score (0-1)</label>
-                    <input type="number" id="f1_score" name="f1_score" step="0.01" min="0" max="1" placeholder="0.92">
+                    <input type="number" id="f1_score" name="f1_score" step="0.001" min="0" max="1" placeholder="0.992">
                 </div>
             </div>
 
