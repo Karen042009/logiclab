@@ -1,43 +1,143 @@
-/* Instructors Hero Section */
+/* ===========================================
+   KEYFRAME ANIMATIONS
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--primary-dark), 
+                0 0 10px var(--primary-dark);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--primary-dark), 
+                0 0 25px var(--primary-color),
+                0 0 35px var(--primary-color);
+  }
+}
+
+/* ===========================================
+   INSTRUCTORS HERO SECTION
+   =========================================== */
+
 .instructors-hero {
   background: linear-gradient(
     135deg,
-    var(--dark-color),
-    var(--secondary-color),
-    var(--dark-color)
+    #000000,
+    #1a1a1a,
+    #2c2c2c,
+    #1a1a1a,
+    #000000
   );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   color: var(--white);
-  padding: 8rem 0 4rem;
+  padding: 9rem 0 5rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.instructors-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 215, 0, 0.2), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 192, 0, 0.2), transparent);
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+  z-index: 0;
 }
 
 .instructors-hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  margin-top: 4rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.instructors-hero h1 .highlight {
+  color: var(--primary-color);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+               0 0 30px rgba(255, 215, 0, 0.3);
 }
 
 .instructors-hero p {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.85);
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease-out;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Instructors Grid */
+/* ===========================================
+   INSTRUCTORS GRID
+   =========================================== */
+
+.instructors-section {
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+  padding: 4rem 0;
+}
+
 .instructors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem 0;
 }
 
 .instructor-card {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 450px;
   perspective: 1000px;
   cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
 .card-front,
@@ -46,11 +146,19 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 12px;
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); /* Changed from 0 10px 30px rgba(0, 0, 0, 0.15) */
   background: var(--white);
+  transition: all 0.4s ease;
+  border: none; /* Changed from 2px solid transparent */
+}
+
+.instructor-card:hover .card-front,
+.instructor-card:hover .card-back {
+  box-shadow: 0 25px 60px rgba(255, 215, 0, 0.25), /* Changed from 0 20px 50px rgba(255, 215, 0, 0.25) */
+              0 0 40px rgba(255, 192, 0, 0.1); /* Changed from 0 0 30px rgba(255, 192, 0, 0.1) */
+  border-color: var(--primary-color);
 }
 
 .card-front {
@@ -58,65 +166,111 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2.5rem 2.5rem 2rem;
   transform: rotateY(0deg);
+  /* Removed background: linear-gradient(135deg, #ffffff, #f9f9f9); */
 }
 
 .instructor-image {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   overflow: hidden;
   border: 4px solid var(--primary-color);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor-card:hover .instructor-image {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5),
+              0 0 20px var(--primary-color);
+  animation: float 2s ease-in-out infinite;
 }
 
 .instructor-image img {
-  max-width: 100px;
-  height: 100px;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
   transition: all 0.3s ease;
-}
-
-.experience-badge {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 0.25rem 1rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .basic-info {
   text-align: center;
+  width: 100%;
 }
 
 .basic-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--secondary-color);
+  font-size: 1.7rem; /* Changed from 1.6rem */
+  margin-bottom: 0.75rem;
+  color: var(--dark-color);
+  font-weight: 700;
 }
 
 .specialization {
-  color: var(--primary-color);
+  color: var(--primary-dark);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.15rem; /* Changed from 1.1rem */
+  margin-bottom: 1rem;
 }
 
-/* Card Back Styles */
+.experience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.experience i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.profession {
+  color: var(--dark-color);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.experience span {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 192, 0, 0.1));
+  padding: 0.4rem 1rem;
+  border-radius: 1.5rem;
+  color: var(--dark-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* ===========================================
+   CARD BACK STYLES
+   =========================================== */
+
 .card-back {
   transform: rotateY(180deg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  background: var(--white);
-  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff, #fafafa);
+}
+
+.instructor-card:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.instructor-card:hover .card-back {
+  transform: rotateY(0deg);
 }
 
 .detailed-info {
@@ -128,28 +282,15 @@
 
 .back-header {
   flex-shrink: 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
 }
 
 .back-header h3 {
   font-size: 1.4rem;
-  margin-bottom: 0.25rem;
-  color: var(--secondary-color);
-}
-
-.back-header .profession {
-  color: var(--secondary-color);
-  opacity: 0.8;
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-}
-
-.back-header .experience {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+  font-weight: 700;
 }
 
 .scrollable-content {
@@ -164,16 +305,21 @@
 
 /* Custom scrollbar */
 .scrollable-content::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 .scrollable-content::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
 }
 
 .scrollable-content::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 5px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
 }
 
 .education,
@@ -188,13 +334,20 @@
   gap: 0.5rem;
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
-  color: var(--secondary-color);
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.education h4 i,
+.skills h4 i {
+  color: var(--primary-color);
 }
 
 .education p {
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+  color: var(--dark-color);
 }
 
 .skills-tags {
@@ -204,13 +357,22 @@
 }
 
 .tag {
-  background: rgba(255, 215, 0, 0.1);
-  color: var(--secondary-color);
-  padding: 0.35rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 192, 0, 0.1));
+  color: var(--dark-color);
+  padding: 0.4rem 0.9rem;
+  border-radius: 1.5rem;
+  font-size: 0.85rem;
   border: 1px solid rgba(255, 215, 0, 0.3);
   flex-shrink: 0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
 }
 
 .contact {
@@ -223,135 +385,111 @@
   flex-shrink: 0;
 }
 
-/* Card Flip Animation */
-.instructor-card {
-  position: relative;
-  width: 100%;
-  height: 450px;
-  perspective: 1000px;
-  cursor: pointer;
-  transform-style: preserve-3d;
+.contact-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
 }
 
-.instructor-card:hover .card-front {
-  transform: rotateY(-180deg);
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+  animation: glow 1s ease-in-out infinite;
 }
 
-.instructor-card:hover .card-back {
-  transform: rotateY(0deg);
+.contact-btn i {
+  font-size: 1.1rem;
 }
 
-/* Flip button styles */
+/* ===========================================
+   FLIP BUTTON
+   =========================================== */
+
 .flip-btn {
   position: absolute;
-  left: 10px;
+  right: 10px;
   bottom: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 .flip-btn i {
-  font-size: 14px;
-  color: #333;
+  font-size: 16px;
+  color: var(--primary-dark);
+  transition: transform 0.3s ease;
 }
 
 .flip-btn:hover {
-  background: white;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
 }
 
-/* Footer Grid Styles */
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.footer-col {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.footer-col h3 {
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-  width: 100%;
-}
-
-.footer-col p {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.social-links a {
+.flip-btn:hover i {
   color: var(--white);
-  background: rgba(255, 255, 255, 0.1);
-  width: 36px;
-  height: 36px;
+  transform: rotate(180deg);
+}
+
+/* ===========================================
+   BACK TO TOP BUTTON
+   =========================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  color: var(--white);
+  border: none;
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  animation: glow 2s ease-in-out infinite;
 }
 
-.social-links a:hover {
-  background: var(--primary-color);
-  color: var(--secondary-color);
-  transform: translateY(-3px);
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
 }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
-  width: 100%;
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6),
+              0 0 30px var(--primary-color);
 }
 
-.footer-bottom p {
-  margin: 0.5rem 0;
-}
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
 
-.footer-credits a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.footer-credits a:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
-}
-
-/* Responsive Design */
 @media (max-width: 992px) {
   .instructors-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -360,28 +498,34 @@
 
 @media (max-width: 768px) {
   .instructors-hero {
-    padding: 6rem 0 3rem;
+    padding: 7rem 0 4rem;
   }
 
   .instructors-hero h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  .instructor-card {
+    height: 420px;
   }
 }
 
 @media (max-width: 576px) {
-  .instructors-hero {
-    padding: 3rem 0;
-  }
-
   .instructors-hero h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
   .instructors-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .instructor-card {
-    height: 380px;
+    height: 400px;
+  }
+  
+  .instructor-image {
+    width: 120px;
+    height: 120px;
   }
 }

@@ -1,14 +1,57 @@
-/* Course Header */
+/* ===========================================
+   KEYFRAME ANIMATIONS
+   =========================================== */
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--primary-dark), 
+                0 0 10px var(--primary-dark);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--primary-dark), 
+                0 0 25px var(--primary-color),
+                0 0 35px var(--primary-color);
+  }
+}
+
+/* ===========================================
+   COURSE HEADER
+   =========================================== */
+
 .course-header {
   position: relative;
   background: linear-gradient(
     135deg,
-    var(--dark-color),
-    var(--secondary-color),
-    var(--dark-color)
+    #000000,
+    #1a1a1a,
+    #2c2c2c,
+    #1a1a1a,
+    #000000
   );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   color: var(--white);
-  padding: 8rem 0 4rem;
+  padding: 9rem 0 6rem;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -22,11 +65,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at 20% 50%,
-    rgba(255, 215, 0, 0.1) 0%,
-    transparent 50%
-  );
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 215, 0, 0.2), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 192, 0, 0.2), transparent);
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+  z-index: 0;
 }
 
 .course-header-content {
@@ -40,131 +85,171 @@
 
 .course-header-text {
   flex: 1;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .course-header-text h1 {
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   margin-bottom: 1.5rem;
   line-height: 1.2;
-  color: var(--primary-color);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.course-header-image {
-  flex: 1;
-  max-width: 500px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  transition: transform 0.5s ease;
+  color: var(--white);
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
-.course-header-image::after {
+.course-header-text h1::after {
   content: "";
   position: absolute;
-  top: 0;
+  bottom: -10px;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), transparent);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+  border-radius: 2px;
 }
 
-.course-header-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.course-header-image:hover img {
-  transform: scale(1.05);
+.course-header-text p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-link {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.8rem;
   background: transparent;
   color: var(--white);
   border: 2px solid var(--primary-color);
   border-radius: 2rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   margin-right: 1rem;
   margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.portfolio-link i {
+  margin-right: 0.5rem;
 }
 
 .portfolio-link:hover {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: var(--secondary-color);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+  border-color: transparent;
 }
 
-/* Course Detail Section */
+/* ===========================================
+   COURSE DETAIL SECTION
+   =========================================== */
+
 .course-detail-section {
   padding: 4rem 0;
-  background: var(--white);
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
   position: relative;
   z-index: 1;
 }
 
 .course-detail-content {
-  background: var(--white);
-  border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  padding: 3rem;
+  background: linear-gradient(135deg, #ffffff, #fafafa);
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  padding: 3.5rem;
   margin-top: -5rem;
   position: relative;
   z-index: 2;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
 }
+
+.course-detail-content:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
+}
+
+/* ===========================================
+   COURSE HIGHLIGHTS
+   =========================================== */
 
 .course-highlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 2.5rem;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
 }
 
 .highlight-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 192, 0, 0.05));
+  border-radius: 15px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+  border-color: var(--primary-color);
 }
 
 .highlight-item i {
-  font-size: 1.5rem;
-  color: var(--primary-color);
+  font-size: 2rem;
+  color: var(--primary-dark);
+  flex-shrink: 0;
 }
 
 .highlight-item p {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dark-color);
 }
+
+/* ===========================================
+   COURSE DESCRIPTION
+   =========================================== */
 
 .course-description {
   margin-bottom: 3rem;
-  color: var(--secondary-color);
+  color: var(--dark-color);
 }
 
 .course-description h4 {
-  font-size: 1.75rem;
-  color: var(--primary-dark);
-  margin: 2rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--primary-color);
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin: 2.5rem 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--primary-color);
+  position: relative;
+}
+
+.course-description h4::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--primary-dark);
+  border-radius: 2px;
 }
 
 .course-description h5 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--dark-color);
-  margin: 1.5rem 0 1rem;
+  margin: 2rem 0 1rem;
   position: relative;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+  font-weight: 700;
 }
 
 .course-description h5::before {
@@ -173,8 +258,9 @@
   left: 0;
   top: 0.35em;
   height: 0.8em;
-  width: 5px;
-  background: var(--primary-color);
+  width: 6px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-radius: 3px;
 }
 
 .course-description ul {
@@ -183,133 +269,108 @@
 }
 
 .course-description li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   position: relative;
-  padding-left: 2rem;
+  padding-left: 2.5rem;
   font-size: 1.1rem;
+  line-height: 1.7;
+  transition: all 0.3s ease;
+}
+
+.course-description li:hover {
+  padding-left: 3rem;
+  color: var(--primary-dark);
 }
 
 .course-description li i {
-  color: var(--primary-color);
+  color: var(--primary-dark);
   position: absolute;
   left: 0;
-  top: 0.2em;
+  top: 0.3em;
+  font-size: 1.2rem;
 }
 
 .course-description b {
   color: var(--primary-dark);
-  font-weight: 600;
+  font-weight: 700;
 }
+
+/* ===========================================
+   BUTTONS
+   =========================================== */
 
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: var(--primary-color);
+  padding: 0.9rem 1.8rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: var(--secondary-color);
   border: none;
   border-radius: 2rem;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn i {
+  margin-right: 0.5rem;
 }
 
 .btn:hover {
-  background: var(--primary-dark);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
   transform: translateY(-3px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
 }
 
 .btn-large {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  margin-top: 2rem;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  animation: glow 2s ease-in-out infinite;
 }
 
-/* Footer Grid Styles */
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.footer-col {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.footer-col h3 {
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-  width: 100%;
-}
-
-.footer-col p {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.social-links a {
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
   color: var(--white);
-  background: rgba(255, 255, 255, 0.1);
-  width: 36px;
-  height: 36px;
+  border: none;
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition);
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  animation: glow 2s ease-in-out infinite;
 }
 
-.social-links a:hover {
-  background: var(--primary-color);
-  color: var(--secondary-color);
-  transform: translateY(-3px);
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
 }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
-  width: 100%;
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6),
+              0 0 30px var(--primary-color);
 }
 
-.footer-bottom p {
-  margin: 0.5rem 0;
-}
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
 
-.footer-credits a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.footer-credits a:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
-}
-
-/* Responsive Design */
 @media (max-width: 992px) {
   .course-header-content {
     flex-direction: column;
@@ -317,43 +378,67 @@
   }
 
   .course-header-text h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
-
-  .course-header-image {
-    max-width: 100%;
+  
+  .course-header-text h1::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .course-detail-content {
     margin-top: -3rem;
+    padding: 2.5rem;
+  }
+
+  .course-highlights {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 576px) {
+  .course-header {
+    padding: 7rem 0 4rem;
+  }
+
   .course-header-text h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+  
+  .course-header-text p {
+    font-size: 1.1rem;
   }
 
   .course-detail-content {
-    padding: 1.5rem;
+    padding: 2rem;
+    margin-top: -2rem;
   }
 
   .course-description h4 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .course-description h5 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+  
+  .course-description li {
+    font-size: 1rem;
   }
 
   .portfolio-link {
     display: block;
     margin-right: 0;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .btn-large {
     width: 100%;
     text-align: center;
+  }
+  
+  .highlight-item {
+    padding: 1.25rem;
   }
 }

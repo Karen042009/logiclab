@@ -6,7 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    <section class="hello-section">
+    <section class="hello-section" id="particles-section">
+        <!-- Particles Canvas -->
+        <canvas id="particles-canvas"></canvas>
+        
         <div class="container">
             <div class="header-animations">
                 <!-- AI animation -->
@@ -43,7 +46,7 @@
             </div>
 
             <div class="hero" data-aos="fade-in">
-                <h1>Logic <span class="highlight-title">Lab</span></h1>
+                <h1 data-text="Logic Lab">Logic <span class="highlight-title">Lab</span></h1>
                 <p>Միացե՛ք մեր մասնագիտական դասընթացներին, որոնք անցկացնում են ոլորտի փորձագետները</p>
                 <div class="tech-tags">
                     <span class="tech-tag ai-tag">AI</span>
@@ -203,7 +206,7 @@
                         <input type="text" name="name" placeholder="Ձեր անունը" required>
                         <input type="email" name="email" placeholder="Ձեր էլ․ փոստը" required>
                         <textarea name="message" placeholder="Ձեր հաղորդագրությունը" required></textarea>
-                        <button type="submit" class="btn btn-pulse">Ուղարկել հաղորդագրությունը</button>
+                        <button type="submit" class="btn">Ուղարկել հաղորդագրությունը</button>
                     </form>
                 </div>
 
@@ -213,4 +216,7 @@
             <i class="fas fa-arrow-up"></i>
         </button>
     </section>
+    
+    <!-- Index Page Custom Animations -->
+    <script src="{{ url_for('static', filename='js/index-animations.js') }}"></script>
 {% endblock %}
