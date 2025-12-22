@@ -268,10 +268,22 @@
   .courses-hero h1 {
     font-size: 2rem;
   }
+  
+  .course-card {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 576px) {
   .courses-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .course-card h3 {
+    font-size: 20px;
+  }
+  
+  .meta-item {
+    font-size: 0.85rem;
   }
 }

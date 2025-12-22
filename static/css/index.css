@@ -142,6 +142,12 @@
   line-height: 1.2;
 }
 
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
 .highlight-title {
   color: var(--white);
   position: relative;
@@ -198,6 +204,22 @@
   background: rgba(255, 192, 0, 0.3);
   border: 1px solid var(--primary-dark);
   animation-delay: 1s;
+}
+
+@media (max-width: 768px) {
+  .ai-animation, .ml-animation, .d3-animation {
+    display: none;
+  }
+  
+  .hello-section {
+    min-height: auto;
+    padding: 10rem 0 5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }
 
 /* Informative Sections */

@@ -411,13 +411,37 @@
 
   .instructors-hero h1 {
     font-size: 1.75rem;
+    margin-top: 2rem;
   }
 
   .instructors-grid {
     grid-template-columns: 1fr;
+    padding: 1rem 0;
   }
 
   .instructor-card {
-    height: 380px;
+    height: 420px;
+  }
+  
+  .card-front, .card-back {
+    padding: 1.25rem;
+  }
+  
+  .instructor-image {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .flip-btn {
+    width: 40px;
+    height: 40px;
+    left: 15px;
+    bottom: 15px;
+    background: var(--primary-color);
+  }
+  
+  .flip-btn i {
+    font-size: 18px;
+    color: var(--secondary-color);
   }
 }
