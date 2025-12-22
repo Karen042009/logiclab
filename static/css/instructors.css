@@ -223,6 +223,42 @@
   flex-shrink: 0;
 }
 
+.contact-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-btn:hover {
+  transform: translateY(-3px);
+  background: var(--primary-dark);
+  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
+}
+
+.contact-btn.linkedin:hover {
+  background: #0077b5;
+  color: white;
+}
+
+.contact-btn.phone:hover {
+  background: #28a745;
+  color: white;
+}
+
+.contact-btn.web:hover {
+  background: #333;
+  color: white;
+}
+
 /* Card Flip Animation */
 .instructor-card {
   position: relative;
